@@ -1,14 +1,20 @@
-import React from 'react';
+import React,{useState} from 'react';
 import './Hide.css';
 
 function Hide() {
+
+	const [show, setshow] = useState(true);
 	return (
 		<div className="Hide">
-			<button>Hide text now!</button>
+			<button onClick={()=>setshow(false)}>Hide text now!</button>
+            
+    { show &&
 			<p>
-				You can read this text,
-				but if you click the button it should disappear. Forever.
-			</p>
+			You can read this text,
+			but if you click the button it should disappear. Forever.
+		</p>
+    }
+
 		</div>
 	);
 }

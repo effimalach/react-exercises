@@ -1,14 +1,21 @@
-import React, {useState} from 'react';
+import React, {useState,useRef} from 'react';
 import './SmartParagraph.css';
 
 function SmartParagraph() {
 
-	const [text] = useState(
+	const [text,setText] = useState(
 		`I must explain to you how all this mistaken idea of
 		denouncing pleasure and praising pain was born and I will give
 		you a complete account of the system and expound the actual
 		teachings of great explorers.`
 	);
+    const textRef = useRef(text)
+	const [isToggled, setToggled] = useState(false);
+
+	function toggle() {
+		setToggled(!isToggled);
+		isToggled ? setText((t)=>t.substring(0,101)): setText(textRef.current)
+	}
 
 	return (
 		<div className="SmartParagraph">
@@ -21,7 +28,7 @@ function SmartParagraph() {
 			<p className="SmartParagraph__value">
 				{text}
 			</p>
-			<button>Toggle</button>
+			<button onClick={toggle}>Toggle</button>
 		</div>
 	);
 }
